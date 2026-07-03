@@ -283,8 +283,12 @@ function App() {
                 <div className={style.backgroundIcon}>
 
                   {/* Botão de adcionar aos favoritos */}
-                  <button className={style.buttonFav} onClick={() => handleFavorite(item)}>
-                    <img src={isFavorite ? IconFavActive : IconFav} alt="Favorito" />
+                  <button className={style.buttonFav}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleFavorite(item);
+                    }}>
+                    <img src={isFavorite ? IconFavActive : IconFav} alt="Favorito"/>
                   </button>
 
                   <img className={style.backgroundIcon} src={pokemonInfo[mainType].icon} alt="Type Pokemons" />
@@ -300,7 +304,7 @@ function App() {
         <button className={style.buttonsSelect} onClick={() => setOffset(offset + 20)} disabled={loadingMore}>{loadingMore ? "Carregando..." : "Ver mais"}</button>
 
 
-        <ModalPokemon pokemon={selectedPokemon} open={openModal} onClose={() => setOpenModal(false)}/>
+        <ModalPokemon pokemon={selectedPokemon} open={openModal} onClose={() => setOpenModal(false)} />
         <Nav />
 
       </section>

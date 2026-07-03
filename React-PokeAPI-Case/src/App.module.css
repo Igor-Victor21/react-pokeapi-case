@@ -56,6 +56,7 @@
     border-radius: 50px;
     background-color: #333333;
     color: #FFFFFF;
+    cursor: pointer;
 }
 
 .modalOverlay {
@@ -137,6 +138,7 @@
     margin: 20px;
     border: none;
     border-radius: 15px;
+    cursor: pointer;
 }
 
 .containerInfoPokemon {
