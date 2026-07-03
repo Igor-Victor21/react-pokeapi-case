@@ -1,0 +1,113 @@
+.title {
+    color: #333333;
+    font-weight: 600;
+    font-size: 18px;
+    margin: 10px;
+}
+
+#s1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.containerPokemon {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 95%;
+    height: 112px;
+    border-radius: 15px;
+    margin: 20px;
+    border: none;
+    border-radius: 15px;
+}
+
+.containerInfoPokemon {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.numberPokemon {
+    font-size: 12px;
+    font-weight: 600;
+    color: #333333;
+}
+
+.namePokemon {
+    font-size: 21px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.typePokemon {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 5.8px;
+    width: auto;
+    height: 26.12px;
+    margin-top: 8px;
+}
+
+.typePokemon span {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 5px;
+    padding: 8px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.littleIcon {
+    width: 20.31px;
+    height: 20.31px;
+    padding: 2px;
+    background-color: #FFFFFF;
+    border-radius: 999px;
+}
+
+.backgroundPokemonImg {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 126px;
+    height: 112px;
+    border-radius: 15px;
+}
+
+.backgroundIcon {
+    position: absolute;
+    width: 94px;
+    height: 94px;
+}
+
+.buttonFav {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 75px;
+    display: flex;
+    width: 32px;
+    height: 32px;
+    padding: 5px;
+    background-color: transparent;
+    border: 2px solid #FFFFFF;
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+.imgPokemon {
+    position: relative;
+    z-index: 2;
+    width: 94px;
+    height: 94px;
+}

@@ -1,5 +1,4 @@
 import style from './App.module.css'
-
 import { useEffect, useState } from 'react'
 
 // importando a url da pasta da api
@@ -8,10 +7,29 @@ import { api } from "./api/api"
 // Importando informações traduzidas dos Pokémon
 import { pokemonInfo } from "./utils/pokemonInfo";
 
+// Importando imagens
+import IconFav from './assets/PokeHeart.png'
+import IconFavActive from "./assets/IconFavActive.png";
+
+// Importando o nav bar 
+import { Nav } from './components/nav';
+
 function App() {
 
   const [data, setData] = useState([]);
   const [erro, setErro] = useState(false);
+
+  // Variável de estado para paginação
+  const [offset, setOffset] = useState(0);
+  const [loadingMore, setLoadingMore] = useState(false);
+
+  // Variável de estado para detalhes do pokémon
+
+  // Variável de estado para favoritos
+  const [favorites, setFavorites] = useState(() => {
+    const storage = localStorage.getItem("favorites");
+    return storage ? JSON.parse(storage) : [];
+  });
 
   // Variável de estado para filtrar os Pokémon pelo nome
   const [filterPokemon, setFilterPokemon] = useState("");
@@ -21,13 +39,11 @@ function App() {
   const [filterTypeName, setFilterTypeName] = useState("Todos os tipos");
   const [filterOrder, setFilterOrder] = useState("Menor número");
 
-  // Abre e fecha os modais
+  // Abre e fecha os modais dos filtros
   const [openType, setOpenType] = useState(false);
   const [openOrder, setOpenOrder] = useState(false);
 
-  // Variável de estado para paginação
-  const [offset, setOffset] = useState(0);
-  const [loadingMore, setLoadingMore] = useState(false);
+
 
   useEffect(() => {
 
@@ -63,6 +79,26 @@ function App() {
   if (erro) {
     return (<><p>Pokémon não encontrado</p></>)
   }
+
+  // Salvando os pokémon favorito no localStorage
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
+
+  function handleFavorite(pokemon) {
+
+    const exists = favorites.some((item) => item.id === pokemon.id);
+
+    if (exists) {
+      setFavorites(
+        favorites.filter((item) => item.id !== pokemon.id)
+      );
+    } else {
+      setFavorites([...favorites, pokemon]);
+    }
+
+  }
+
 
   const filteredPokemons = [...data];
 
@@ -117,8 +153,8 @@ function App() {
             <div className={style.containerButtons}>
 
               {/* Filtro via botões */}
-              <button className={style.buttonsSelect} onClick={() => {setOpenType(true), setOpenOrder(false) }}>{filterTypeName}</button>
-              <button className={style.buttonsSelect} onClick={() => {setOpenOrder(true), setOpenType(false) }}>{filterOrder}</button>
+              <button className={style.buttonsSelect} onClick={() => { setOpenType(true), setOpenOrder(false) }}>{filterTypeName}</button>
+              <button className={style.buttonsSelect} onClick={() => { setOpenOrder(true), setOpenType(false) }}>{filterOrder}</button>
 
               {/* Modal para o filtro da tipagem dos pokémons */}
               {openType && (
@@ -155,7 +191,7 @@ function App() {
 
                 </div>
               )}
-              
+
               {/* Modal do filtro por ordem */}
               {openOrder && (
                 <div className={style.modalOverlay} onClick={() => setOpenOrder(false)}>
@@ -201,6 +237,10 @@ function App() {
           // Pegando o primeiro tipo do Pokémon
           const mainType = item.types[0].type.name;
 
+          const isFavorite = favorites.some(
+            (pokemon) => pokemon.id === item.id
+          );
+
           return (
             <div className={style.containerPokemon} style={{ backgroundColor: pokemonInfo[mainType].backgroundInfoText }} key={item.id}>
 
@@ -232,6 +272,11 @@ function App() {
               <div className={style.backgroundPokemonImg} style={{ backgroundColor: pokemonInfo[mainType].color }}>
                 <div className={style.backgroundIcon}>
 
+                  {/* Botão de adcionar aos favoritos */}
+                  <button className={style.buttonFav} onClick={() => handleFavorite(item)}>
+                    <img src={isFavorite ? IconFavActive : IconFav} alt="Favorito" />
+                  </button>
+
                   <img className={style.backgroundIcon} src={pokemonInfo[mainType].icon} alt="Type Pokemons" />
                   <img className={style.imgPokemon} src={item.sprites.other["official-artwork"].front_default} alt={item.name} />
                 </div>
@@ -243,6 +288,9 @@ function App() {
 
         {/* Botão Ver mais, a cada click o sistema exibe 20 Pokémon */}
         <button className={style.buttonsSelect} onClick={() => setOffset(offset + 20)} disabled={loadingMore}>{loadingMore ? "Carregando..." : "Ver mais"}</button>
+
+        <Nav />
+
       </section>
     </>
   )
