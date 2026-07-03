@@ -50,9 +50,79 @@
     text-align: center;
     width: 156px;
     height: 42px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     border-radius: 50px;
     background-color: #333333;
     color: #FFFFFF;
+}
+
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, .25);
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    z-index: 999;
+}
+
+.modalBottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    height: 65vh;
+    background: white;
+    border-radius: 30px;
+    gap: 18px;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.modalBottom::-webkit-scrollbar {
+    display: none;
+}
+
+.modalLine {
+    width: 55px;
+    height: 6px;
+    background: #d7d7d7;
+    border-radius: 20px;
+}
+
+.modalTitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.modalButton {
+    width: 95%;
+    min-height: 42px;
+    border: none;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.modalButton:hover {
+    transform: scale(1.02);
+}
+
+@keyframes bottomUp {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
 }
 
 .containerPokemon {
