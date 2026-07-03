@@ -1,7 +1,7 @@
 import style from "./Nav.module.css";
 import { NavLink } from "react-router-dom";
 
-import IconPokeball from "../assets/IconPokeball.png";
+import IconPokeball from "../assets/IconPokeBall.png";
 import IconFavActive from "../assets/IconFavActive.png";
 
 export function Nav() {
