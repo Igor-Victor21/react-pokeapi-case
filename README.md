@@ -57,17 +57,28 @@ src/
 
 ## Funcionalidades
 
-- Listagem de Pokémons
-- Pesquisa por nome
+- Listagem de Pokémons utilizando a PokéAPI
+- Exibição de informações como número, nome, imagem e tipos
+- Pesquisa por nome em tempo real
 - Filtro por tipo
 - Ordenação por:
   - Menor número
   - Maior número
   - A-Z
   - Z-A
+- Modal de detalhes ao clicar em um Pokémon, exibindo:
+  - Imagem oficial
+  - Nome
+  - Número
+  - Tipos
+  - Altura
+  - Peso
+  - Habilidades
+  - Estatísticas base
 - Sistema de favoritos utilizando LocalStorage
-- Página exclusiva de favoritos
+- Página exclusiva de Pokémons favoritos
 - Paginação com carregamento de mais Pokémons
+- Persistência dos favoritos após recarregar a página
 - Interface responsiva (Mobile First)
 
 ## API utilizada
