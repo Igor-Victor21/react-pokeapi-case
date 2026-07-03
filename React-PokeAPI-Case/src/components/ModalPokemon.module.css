@@ -1,0 +1,65 @@
+.overlay {
+    z-index: 999;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    inset: 0;
+    background: rgba(0, 0, 0, .6);
+}
+
+.modal {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 420px;
+    background: white;
+    border-radius: 18px;
+    padding: 20px;
+
+}
+
+.close {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 15px;
+    top: 15px;
+    background-color: transparent;
+    border: 1px solid #000000;
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+.image {
+    width: 180px;
+}
+
+.types {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.types span {
+    padding: 6px 12px;
+    border-radius: 20px;
+    color: white;
+}
+
+.info {
+    width: 100%;
+}
+
+.stats {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.stats div {
+    display: flex;
+    justify-content: space-between;
+    margin: 6px 0;
+}

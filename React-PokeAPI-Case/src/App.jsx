@@ -13,6 +13,9 @@ import IconFavActive from "./assets/IconFavActive.png";
 
 // Importando o nav bar 
 import { Nav } from './components/nav';
+// Importando o modal do pokémon
+import ModalPokemon from "./components/ModalPokemon.jsx";
+
 
 function App() {
 
@@ -24,6 +27,8 @@ function App() {
   const [loadingMore, setLoadingMore] = useState(false);
 
   // Variável de estado para detalhes do pokémon
+  const [selectedPokemon, setSelectedPokemon] = useState(null);
+  const [openModal, setOpenModal] = useState(false);
 
   // Variável de estado para favoritos
   const [favorites, setFavorites] = useState(() => {
@@ -242,7 +247,12 @@ function App() {
           );
 
           return (
-            <div className={style.containerPokemon} style={{ backgroundColor: pokemonInfo[mainType].backgroundInfoText }} key={item.id}>
+            <div className={style.containerPokemon} key={item.id} style={{ backgroundColor: pokemonInfo[mainType].backgroundInfoText }}
+              onClick={() => {
+                setSelectedPokemon(item);
+                setOpenModal(true);
+              }}
+            >
 
               {/* Container de informações lado esquerdo */}
               <div className={style.containerInfoPokemon}>
@@ -289,6 +299,8 @@ function App() {
         {/* Botão Ver mais, a cada click o sistema exibe 20 Pokémon */}
         <button className={style.buttonsSelect} onClick={() => setOffset(offset + 20)} disabled={loadingMore}>{loadingMore ? "Carregando..." : "Ver mais"}</button>
 
+
+        <ModalPokemon pokemon={selectedPokemon} open={openModal} onClose={() => setOpenModal(false)}/>
         <Nav />
 
       </section>
